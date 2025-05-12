@@ -31,98 +31,83 @@ const denverData = {
   ]
 }
 
+const Section = ({ title, content }) => (
+  <div className="mb-6">
+    <h2 className="text-xl font-semibold text-blue-800 mb-2">{title}</h2>
+    {Array.isArray(content) ? (
+      <ul className="list-disc ml-6 text-gray-700">
+        {content.map((item, i) => <li key={i}>{item}</li>)}
+      </ul>
+    ) : (
+      <div className="text-gray-700">{content}</div>
+    )}
+  </div>
+)
+
 export default function Home() {
   const [city, setCity] = useState('')
   const [showInfo, setShowInfo] = useState(false)
 
   const handleSearch = () => {
-    if (city.toLowerCase() === 'denver') {
-      setShowInfo(true)
-    } else {
-      setShowInfo(false)
-    }
+    setShowInfo(city.toLowerCase() === 'denver')
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 p-6">
       <Head>
-        <title>City Guide</title>
+        <title>Denver City Guide</title>
       </Head>
-      <div className="max-w-2xl mx-auto bg-white p-6 rounded shadow">
-        <h1 className="text-2xl font-bold mb-4">City Guide</h1>
-        <input
-          type="text"
-          placeholder="Enter a city (e.g., Denver)"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded mb-4"
-        />
-        <button
-          onClick={handleSearch}
-          className="bg-blue-600 text-white px-4 py-2 rounded"
-        >
-          Search
-        </button>
+      <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8">
+        <h1 className="text-3xl font-bold text-center text-blue-900 mb-6">Denver City Guide</h1>
+        <div className="flex mb-6">
+          <input
+            type="text"
+            placeholder="Enter a city (e.g., Denver)"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            className="flex-1 p-2 border border-gray-300 rounded-l-md focus:outline-none"
+          />
+          <button
+            onClick={handleSearch}
+            className="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700"
+          >
+            Search
+          </button>
+        </div>
 
         {showInfo && (
-          <div className="mt-6">
-            <h2 className="text-xl font-semibold mb-2">Top Places to Visit</h2>
-            <ul className="list-disc ml-5 mb-4">
-              {denverData.attractions.map((item, i) => <li key={i}>{item}</li>)}
-            </ul>
-
-            <h2 className="text-xl font-semibold mb-2">Places to Avoid</h2>
-            <ul className="list-disc ml-5 mb-4">
-              {denverData.avoid.map((item, i) => <li key={i}>{item}</li>)}
-            </ul>
-
-            <h2 className="text-xl font-semibold mb-2">Hotels for Business Travelers</h2>
-            <ul className="list-disc ml-5 mb-4">
-              {denverData.hotels.map((item, i) => <li key={i}>{item}</li>)}
-            </ul>
-
-            <h2 className="text-xl font-semibold mb-2">Coworking Spaces</h2>
-            <ul className="list-disc ml-5 mb-4">
-              {denverData.coworking.map((item, i) => <li key={i}>{item}</li>)}
-            </ul>
-
-            <h2 className="text-xl font-semibold mb-2">Getting Around</h2>
-            <ul className="list-disc ml-5">
-              {denverData.transport.map((item, i) => <li key={i}>{item}</li>)}
-            </ul>
+          <div className="space-y-4">
+            <Section title="Top Places to Visit" content={denverData.attractions} />
+            <Section title="Places to Avoid" content={denverData.avoid} />
+            <Section title="Hotels for Business Travelers" content={denverData.hotels} />
+            <Section title="Coworking Spaces" content={denverData.coworking} />
+            <Section title="Getting Around" content={denverData.transport} />
+            <Section
+              title="Visiting the Main Office"
+              content={
+                <ul className="list-disc ml-6">
+                  <li>Business casual dress code</li>
+                  <li>Open-plan layout encourages teamwork</li>
+                  <li>C-suite executives have private offices</li>
+                </ul>
+              }
+            />
+            <Section
+              title="U.S. Visa Requirements"
+              content={
+                <div>
+                  <ul className="list-disc ml-6 mb-2">
+                    <li><strong>Visa Waiver Program (VWP):</strong> 90-day stay with ESTA for eligible countries.</li>
+                    <li><strong>B-1 Visa:</strong> Business activities like meetings or conferences.</li>
+                    <li><strong>B-2 Visa:</strong> Tourism or visiting family/friends.</li>
+                  </ul>
+                  <p>More info: <a href="https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visitor.html" target="_blank" className="text-blue-600 underline">U.S. State Department</a></p>
+                </div>
+              }
+            />
           </div>
         )}
       </div>
     </div>
   )
 }
-            <h2 className="text-xl font-semibold mb-2">Visiting the Main Office</h2>
-            <p className="mb-2">
-              Our Denver office is an easy-going, professional space designed for comfort and collaboration.
-            </p>
-            <ul className="list-disc ml-5 mb-4">
-              <li>Business casual dress code</li>
-              <li>Open-plan layout encourages teamwork</li>
-              <li>C-suite executives have private offices</li>
-            </ul>
-
-            <h2 className="text-xl font-semibold mb-2">U.S. Visa Requirements</h2>
-            <p className="mb-2">
-              If you're visiting Denver from outside the U.S., you'll need to ensure proper visa arrangements.
-            </p>
-            <ul className="list-disc ml-5 mb-2">
-              <li>
-                <strong>Visa Waiver Program (VWP):</strong> Citizens of 41 countries can visit for up to 90 days without a visa but must obtain an ESTA.
-              </li>
-              <li>
-                <strong>B-1 Visa:</strong> For business activities like meetings or conferences.
-              </li>
-              <li>
-                <strong>B-2 Visa:</strong> For tourism, vacation, or visiting family/friends.
-              </li>
-            </ul>
-            <p className="mb-4">
-              To apply, complete Form DS-160, schedule a U.S. embassy interview, and bring required documents. For more, visit 
-              <a href="https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visitor.html" className="text-blue-600 underline" target="_blank"> U.S. State Department - Visitor Visa</a>.
-            </p>
-
