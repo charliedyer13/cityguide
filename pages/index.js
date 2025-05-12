@@ -96,3 +96,33 @@ export default function Home() {
     </div>
   )
 }
+            <h2 className="text-xl font-semibold mb-2">Visiting the Main Office</h2>
+            <p className="mb-2">
+              Our Denver office is an easy-going, professional space designed for comfort and collaboration.
+            </p>
+            <ul className="list-disc ml-5 mb-4">
+              <li>Business casual dress code</li>
+              <li>Open-plan layout encourages teamwork</li>
+              <li>C-suite executives have private offices</li>
+            </ul>
+
+            <h2 className="text-xl font-semibold mb-2">U.S. Visa Requirements</h2>
+            <p className="mb-2">
+              If you're visiting Denver from outside the U.S., you'll need to ensure proper visa arrangements.
+            </p>
+            <ul className="list-disc ml-5 mb-2">
+              <li>
+                <strong>Visa Waiver Program (VWP):</strong> Citizens of 41 countries can visit for up to 90 days without a visa but must obtain an ESTA.
+              </li>
+              <li>
+                <strong>B-1 Visa:</strong> For business activities like meetings or conferences.
+              </li>
+              <li>
+                <strong>B-2 Visa:</strong> For tourism, vacation, or visiting family/friends.
+              </li>
+            </ul>
+            <p className="mb-4">
+              To apply, complete Form DS-160, schedule a U.S. embassy interview, and bring required documents. For more, visit 
+              <a href="https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visitor.html" className="text-blue-600 underline" target="_blank"> U.S. State Department - Visitor Visa</a>.
+            </p>
+
