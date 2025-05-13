@@ -32,14 +32,14 @@ const denverData = {
 }
 
 const Section = ({ title, content }) => (
-  <div className="mb-6">
-    <h2 className="text-xl font-semibold text-blue-800 mb-2">{title}</h2>
+  <div className="mb-8">
+    <h2 className="text-2xl font-semibold text-blue-700 mb-3 border-b pb-1">{title}</h2>
     {Array.isArray(content) ? (
-      <ul className="list-disc ml-6 text-gray-700">
+      <ul className="list-disc ml-6 space-y-1 text-gray-800">
         {content.map((item, i) => <li key={i}>{item}</li>)}
       </ul>
     ) : (
-      <div className="text-gray-700">{content}</div>
+      <div className="text-gray-800">{content}</div>
     )}
   </div>
 )
@@ -53,30 +53,30 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 to-blue-100 py-10 px-4">
       <Head>
         <title>Denver City Guide</title>
       </Head>
-      <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center text-blue-900 mb-6">Denver City Guide</h1>
-        <div className="flex mb-6">
+      <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-10 border border-gray-200">
+        <h1 className="text-4xl font-bold text-center text-blue-800 mb-10">Denver City Guide</h1>
+        <div className="flex mb-8">
           <input
             type="text"
             placeholder="Enter a city (e.g., Denver)"
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            className="flex-1 p-2 border border-gray-300 rounded-l-md focus:outline-none"
+            className="flex-1 p-3 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <button
             onClick={handleSearch}
-            className="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700"
+            className="bg-blue-600 text-white px-6 py-3 rounded-r-md hover:bg-blue-700 transition"
           >
             Search
           </button>
         </div>
 
         {showInfo && (
-          <div className="space-y-4">
+          <div className="text-lg space-y-8">
             <Section title="Top Places to Visit" content={denverData.attractions} />
             <Section title="Places to Avoid" content={denverData.avoid} />
             <Section title="Hotels for Business Travelers" content={denverData.hotels} />
@@ -85,7 +85,7 @@ export default function Home() {
             <Section
               title="Visiting the Main Office"
               content={
-                <ul className="list-disc ml-6">
+                <ul className="list-disc ml-6 space-y-1">
                   <li>Business casual dress code</li>
                   <li>Open-plan layout encourages teamwork</li>
                   <li>C-suite executives have private offices</li>
@@ -96,12 +96,21 @@ export default function Home() {
               title="U.S. Visa Requirements"
               content={
                 <div>
-                  <ul className="list-disc ml-6 mb-2">
+                  <ul className="list-disc ml-6 space-y-1 mb-3">
                     <li><strong>Visa Waiver Program (VWP):</strong> 90-day stay with ESTA for eligible countries.</li>
                     <li><strong>B-1 Visa:</strong> Business activities like meetings or conferences.</li>
                     <li><strong>B-2 Visa:</strong> Tourism or visiting family/friends.</li>
                   </ul>
-                  <p>More info: <a href="https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visitor.html" target="_blank" className="text-blue-600 underline">U.S. State Department</a></p>
+                  <p>
+                    More info:{' '}
+                    <a
+                      href="https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visitor.html"
+                      target="_blank"
+                      className="text-blue-600 underline"
+                    >
+                      U.S. State Department
+                    </a>
+                  </p>
                 </div>
               }
             />
